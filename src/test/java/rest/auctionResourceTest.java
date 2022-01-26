@@ -30,7 +30,7 @@ public class auctionResourceTest {
 
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
-
+    private static String securityToken;
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
         return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
@@ -77,6 +77,18 @@ public class auctionResourceTest {
 
     }
 
+    private static void login(String role, String password) {
+        String json = String.format("{username: \"%s\", password: \"%s\"}", role, password);
+        securityToken = given()
+                .contentType("application/json")
+                .body(json)
+                //.when().post("/api/login")
+                .when().post("/login")
+                .then()
+                .extract().path("token");
+        //System.out.println("TOKEN ---> " + securityToken);
+    }
+
     @Test
     public void testServerIsUP(){
 
@@ -85,7 +97,7 @@ public class auctionResourceTest {
     }
 
     @Test
-    public void testAlltrips(){
+    public void testAllAuctions(){
         given().contentType("application/json")
                 .get("auction/allauctions")
                 .then()
@@ -93,6 +105,7 @@ public class auctionResourceTest {
                 .statusCode(HttpStatus.OK_200.getStatusCode());
 
     }
+
 
 
 

@@ -45,7 +45,7 @@ public class AuctionResource {
 
 
 
-    @POST
+/*    @POST
     @Path("createauction")
     @Produces("application/json")
     @Consumes("application/json")
@@ -66,7 +66,7 @@ public class AuctionResource {
         AuctionDTO auctionDTO = new AuctionDTO(name,date,time,location);
         AuctionDTO response = auctionFacade.createAuction(auctionDTO);
         return GSON.toJson(response);
-    }
+    }*/
 
     @POST
     @Path("create")
