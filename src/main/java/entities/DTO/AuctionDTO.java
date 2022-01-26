@@ -1,5 +1,9 @@
 package entities.DTO;
 
+import entities.Boat;
+
+import java.util.List;
+
 public class AuctionDTO {
 
     private Long id;
@@ -7,6 +11,7 @@ public class AuctionDTO {
     private String date;
     private String time;
     private String location;
+    private List<BoatDTO> boatList;
 
     public AuctionDTO() {
     }
@@ -49,5 +54,13 @@ public class AuctionDTO {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public List<BoatDTO> getBoatList() {
+        return boatList;
+    }
+
+    public void setBoatList(List<BoatDTO> boatList) {
+        this.boatList = boatList;
     }
 }
