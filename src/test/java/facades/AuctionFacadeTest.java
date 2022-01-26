@@ -1,7 +1,8 @@
-package facades;
+/*package facades;
 
 import entities.Auction;
 import entities.DTO.AuctionDTO;
+import entities.DTO.BoatDTO;
 import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
 import utils.SetupTestUsers;
@@ -70,10 +71,19 @@ public class AuctionFacadeTest {
 
     @Test
     void createAuction(){
-        AuctionDTO auctionDTO = new AuctionDTO("test","test","test","test");
+        AuctionDTO auctionDTO = new AuctionDTO(1L,"test","test","test","test");
         AuctionDTO auctionDTO1 = facade.createAuction(auctionDTO);
         assertNotNull(auctionDTO1.getName());
 
     }
 
+    @Test
+    void deleteAuction(){
+       AuctionDTO auctionDTO = facade.deleteByID(1L);
+
+        assertNull(auctionDTO.getId());
+    }
+
+
 }
+*/

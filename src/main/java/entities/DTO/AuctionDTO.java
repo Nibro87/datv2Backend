@@ -42,6 +42,13 @@ public class AuctionDTO {
         this.location = auction.getLocation();
     }
 
+    public AuctionDTO(Long id, String name, String date, String time, String location) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+    }
 
     public Long getId() {
         return id;

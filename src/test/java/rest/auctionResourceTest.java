@@ -1,4 +1,4 @@
-package rest;
+/*package rest;
 
 
 import entities.Auction;
@@ -96,4 +96,4 @@ public class auctionResourceTest {
 
 
 
-}
+}*/
