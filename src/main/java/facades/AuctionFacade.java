@@ -30,7 +30,7 @@ public class AuctionFacade {
             TypedQuery<AuctionDTO> query = em.createQuery("SELECT a FROM action a",AuctionDTO.class);
             List<AuctionDTO> auctionDTOList = query.getResultList();
             if(auctionDTOList.isEmpty()){
-                throw new WebApplicationException("the database does not contain any auctions");
+                throw new WebApplicationException("the database does not contain any auctions!");
             }
 
             return auctionDTOList;
