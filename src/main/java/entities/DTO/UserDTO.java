@@ -12,7 +12,7 @@ public class UserDTO {
     private String phone;
     private String email;
     private List<Role> roleList;
-    private List<Boat> boatList;
+    private List<BoatDTO> boatList;
 
     public UserDTO() {
     }
@@ -57,11 +57,6 @@ public class UserDTO {
         this.roleList = roleList;
     }
 
-    public List<Boat> getBoatList() {
-        return boatList;
-    }
 
-    public void setBoatList(List<Boat> boatList) {
-        this.boatList = boatList;
-    }
+
 }

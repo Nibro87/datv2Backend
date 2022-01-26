@@ -65,3 +65,4 @@ public class Boat implements Serializable {
         this.imageUrl = imageUrl;
     }
 }
+
