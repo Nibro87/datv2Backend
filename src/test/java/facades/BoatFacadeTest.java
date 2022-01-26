@@ -1,27 +1,30 @@
 package facades;
 
 import entities.Auction;
+import entities.Boat;
 import entities.DTO.AuctionDTO;
+import entities.DTO.BoatDTO;
+import entities.DTO.UserDTO;
+import entities.User;
 import org.junit.jupiter.api.*;
 import utils.EMF_Creator;
-import utils.SetupTestUsers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-public class AuctionFacadeTest {
+@Disabled
+public class BoatFacadeTest {
 
     private static EntityManagerFactory emf;
-    private static AuctionFacade facade;
+    private static OwnerFacade facade;
 
     @BeforeAll
     public static void beforeAll(){
 
         emf = EMF_Creator.createEntityManagerFactoryForTest();
-        facade = AuctionFacade.getAuctionFacade(emf);
+        facade = OwnerFacade.getOwnerFacade(emf);
 
     }
 
@@ -34,10 +37,18 @@ public class AuctionFacadeTest {
     @BeforeEach
     public void setUP(){
         EntityManager em = emf.createEntityManager();
+
+
+        User user = new User("user","test1");
+
+
+
         try{
             em.getTransaction().begin();
-
-            em.persist(new Auction("testname","testdate","testtime","testlocation"));
+            Boat boat = new Boat(1L,"test","test","test","test","test");
+            user.addBoat(boat);
+            em.persist(boat);
+            em.persist(user);
             em.getTransaction().commit();
 
         }finally {
@@ -49,31 +60,20 @@ public class AuctionFacadeTest {
     public void tearDown(){
     }
 
+
+
     @Test
-    public void testGetAllAction(){
+    void getOwnerBoat() {
 
-        List<AuctionDTO> actual = facade.getAllAuctions();
-        int expected = 1;
+        List<BoatDTO> boatDTOList = facade.getOwnerBoats("user");
 
-        assertEquals(expected,actual.size());
+        assertFalse(boatDTOList.isEmpty());
 
     }
 
-    @Test
-    public void notEmpty(){
 
-        List<AuctionDTO> auctionDTOList = facade.getAllAuctions();
 
-        assertTrue(auctionDTOList.size() > 0);
 
-    }
 
-    @Test
-    void createAuction(){
-        AuctionDTO auctionDTO = new AuctionDTO("test","test","test","test");
-        AuctionDTO auctionDTO1 = facade.createAuction(auctionDTO);
-        assertNotNull(auctionDTO1.getName());
-
-    }
 
 }

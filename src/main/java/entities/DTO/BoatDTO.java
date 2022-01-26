@@ -1,5 +1,7 @@
 package entities.DTO;
 
+import entities.Boat;
+
 import java.util.List;
 
 public class BoatDTO {
@@ -7,12 +9,34 @@ public class BoatDTO {
     private Long id;
     private String name;
     private String brand;
+    private String make;
     private String year;
     private String imageUrl;
     private AuctionDTO auctionDTO;
     private List<UserDTO> userList;
 
     public BoatDTO() {
+    }
+
+    public BoatDTO(Long id, String name, String brand, String make, String year, String imageUrl) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.make = make;
+        this.year = year;
+        this.imageUrl = imageUrl;
+    }
+
+    public BoatDTO(Boat boat) {
+        if(boat.getId() != null){
+            this.id = boat.getId();
+        }
+        this.name = boat.getName();
+        this.brand = boat.getBrand();
+        this.make = boat.getMake();
+        this.year = boat.getYear();
+        this.imageUrl = boat.getImageUrl();
+
     }
 
     public Long getId() {
@@ -70,4 +94,8 @@ public class BoatDTO {
     public void setUserList(List<UserDTO> userList) {
         this.userList = userList;
     }
+
+    public String getMake() {return make;}
+
+    public void setMake(String make) {this.make = make;}
 }

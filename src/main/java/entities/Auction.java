@@ -1,27 +1,32 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import entities.DTO.AuctionDTO;
+import entities.DTO.BoatDTO;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity(name = "action")
+@Entity(name = "auction")
 public class Auction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="Action_name", length=15, nullable = false,unique = false )
+    @Column(name="Auction_name", length=15, nullable = false,unique = false )
     private String name;
 
-    @Column(name="Action_date", length=15, nullable = false,unique = false )
+    @Column(name="Auction_date", length=15, nullable = false,unique = false )
     private String date;
 
-    @Column(name="Action_time", length=15, nullable = false,unique = false )
+    @Column(name="Auction_time", length=15, nullable = false,unique = false )
     private String time;
 
-    @Column(name="Action_location", length=15, nullable = false,unique = false )
+    @Column(name="Auction_location", length=15, nullable = false,unique = false )
     private String location;
+
 
     @OneToMany(mappedBy = "auction", cascade = CascadeType.ALL)
     private List<Boat> boatList;
@@ -37,6 +42,16 @@ public class Auction implements Serializable {
         this.time = time;
         this.location = location;
     }
+
+    public Auction(AuctionDTO auctionDTO) {
+        this.name = auctionDTO.getName();
+        this.date = auctionDTO.getDate();
+        this.time = auctionDTO.getTime();
+        this.location = auctionDTO.getLocation();
+
+    }
+
+
 
     public Long getId() {
         return id;

@@ -99,6 +99,18 @@ public class User implements Serializable {
         roleList.add(userRole);
     }
 
+    public void addBoat(Boat boat) {
+        boatList.add(boat);
+    }
+
+    public List<Boat> getBoatList() {
+        return boatList;
+    }
+
+    public void setBoatList(List<Boat> boatList) {
+        this.boatList = boatList;
+    }
+
     @Override
     public String toString() {
         return "User{" +

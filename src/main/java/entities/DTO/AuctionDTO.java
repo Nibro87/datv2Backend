@@ -1,7 +1,9 @@
 package entities.DTO;
 
+import entities.Auction;
 import entities.Boat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AuctionDTO {
@@ -16,12 +18,30 @@ public class AuctionDTO {
     public AuctionDTO() {
     }
 
+
+
     public AuctionDTO(String name, String date, String time, String location) {
         this.name = name;
         this.date = date;
         this.time = time;
         this.location = location;
     }
+
+    public AuctionDTO(Auction auction, List<Boat> boatList ) {
+        this.name = auction.getName();
+        this.date = auction.getDate();
+        this.time = auction.getTime();
+        this.location = auction.getLocation();
+
+    }
+
+    public AuctionDTO(Auction auction) {
+        this.name = auction.getName();
+        this.date = auction.getDate();
+        this.time = auction.getTime();
+        this.location = auction.getLocation();
+    }
+
 
     public Long getId() {
         return id;
