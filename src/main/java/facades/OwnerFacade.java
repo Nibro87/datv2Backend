@@ -30,14 +30,14 @@ public class OwnerFacade {
     public List<BoatDTO> getOwnerBoats(String name) {
         EntityManager em = emf.createEntityManager();
 
-        List<Boat> boats;
+        List<Boat> boatList;
         try {
             TypedQuery<Boat> query = em.createQuery("SELECT b from boat b join b.userList u where u.userName =:name", Boat.class)
                     .setParameter("name", name);
 
-            boats = query.getResultList();
+            boatList = query.getResultList();
 
-            if (boats.isEmpty()) {
+            if (boatList.isEmpty()) {
                 throw new WebApplicationException("empty");
             }
 
@@ -47,7 +47,7 @@ public class OwnerFacade {
         }
 
         List<BoatDTO> boatDTOList = new ArrayList<>();
-        boats.forEach(boat -> boatDTOList.add(new BoatDTO(boat.getId(), boat.getName(), boat.getBrand(), boat.getMake(), boat.getYear(), boat.getImageUrl())));
+        boatList.forEach(boat -> boatDTOList.add(new BoatDTO(boat.getId(), boat.getName(), boat.getBrand(), boat.getMake(), boat.getYear(), boat.getImageUrl())));
         return boatDTOList;
     }
 
